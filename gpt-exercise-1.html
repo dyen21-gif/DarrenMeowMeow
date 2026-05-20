@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .copy-button{
+      font-size:100px;
+      padding:60px 50px;
+    }
+    
+  </style>
+</head>
+<body>
+  <button class="js-copy-button-target js-copy-button-1 copy-button" data-id="1">
+    Copy
+  </button>
+    <button class="js-copy-button-target js-copy-button-2 copy-button" data-id="2">
+    Copy
+  </button>
+    <button class="js-copy-button-target js-copy-button-3 copy-button" data-id="3">
+    Copy
+  </button>
+
+  <script>
+    
+    const timerObject={};
+    function setTimerCopy(button){
+      const Id=button.dataset.id;
+      const previousTimer=timerObject[Id];
+      
+      if (previousTimer){
+        clearTimeout(previousTimer);
+      }
+       button.textContent='copied!';
+      const intervalid=setTimeout(()=>{
+        button.textContent='Copy';
+      },2000);
+      timerObject[Id]=intervalid;
+    
+    }
+    document.querySelectorAll('.js-copy-button-target')
+    .forEach((button)=>{
+      button.addEventListener('click',()=>{
+        setTimerCopy(button);
+      })
+    })
+    
+
+  </script>
+</body>
+</html>
